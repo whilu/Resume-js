@@ -4,4 +4,4 @@
 [点击查看(gh-pages)](http://whilu.github.io/myResume/)
 
 ###Rlease history
-version 1.0 2014.6.17
+version 1.0 20140617
