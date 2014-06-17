@@ -1,0 +1,43 @@
+body{
+	font-family: courier,Arial;
+    font-size: 13px;
+	margin:0px;
+    background:black;
+}
+#contentToWrite,#currentCon{
+    display: none;
+}
+a:link,a:visited,a:active{
+    color: #5D7BB9;
+    font-weight: bold;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
+#myContent, #myContent blink{
+    padding: 10px 0px 0px 10px;
+    margin: 10px 0px 0px 10px;
+    width:720px;
+    height:auto;
+    color: #FFFFFF;
+    word-wrap:break-word;
+    /*border: 1px solid #ffffff;*/
+}
+#myContent .inDiv{
+    color: #E67E22;
+    font-size: 12px;
+}
+#command{
+    background-color:#000000;
+    border:none;
+    color:#FFFFFF;
+    font-family: courier,Arial;
+}
+.listCMD{
+    color: #2ECC71;
+}
+#myPic{
+    display: none;
+    border: none;
+}
