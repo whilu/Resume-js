@@ -16,8 +16,8 @@ var stringLengthOne = 0;//单条命令长度
 var cmdStr=null;//单条命令
 
 
+//滚动条保持最底部
 function toButtom(){
-    //滚动条保持最底部
     window.scrollTo(0,document.body.scrollHeight);
 }
 //写内容
@@ -35,7 +35,6 @@ function writeContent(init){
     
     var theChar = inputText.charAt(charIndex);
    	var nextFourChars = inputText.substr(charIndex,4);//判断是否到换行，截取4个字符
-    // alert(nextFourChars);
    	if(nextFourChars=='<BR>' || nextFourChars=='<br>'){
    		theChar  = '<BR>'+conArr[i];
    		charIndex+=3;
@@ -76,27 +75,22 @@ document.onkeydown=function getKey(e){
         var keyCode = e.keyCode || e.which || e.charCode;
         if(keyCode == 13 || keyCode == 108){
             if (tmpCmd.substr(0,2) == "ls") {
-                //alert("cd");
                 if (tmpCmd.length >= 4) {
                     var tmpCmdContext = tmpCmd.substr(3,tmpCmd.length-3);
                     for(var m = 0; m < conArr.length; m=m+2){
                         conArr[m]=conArr[m].replace(/\s+/g, "");//修正符g表示全局匹配
-                        //alert(conArr[m]);
                         if(conArr[m]==tmpCmdContext){
                             resultStr=conArr[m+1];
                             resultStr=resultStr.substr(0,resultStr.length-7);
-                            //alert(resultStr+"#");
                             break;
                         }
                     }
                     if(resultStr == ""){
                         for(var m = 0; m < conArr.length; m=m+2){
                             conArr[m]=conArr[m].replace(/\s+/g, "");//修正符g表示全局匹配
-                            //alert(conArr[m]);
                             if(conArr[m]=="notfound"){
                                 resultStr=conArr[m+1];
                                 resultStr=resultStr.substr(0,resultStr.length);
-                                // alert(resultStr);
                                 break;
                             }
                         }
@@ -110,31 +104,24 @@ document.onkeydown=function getKey(e){
                 window.location.reload();
             }
             else if(tmpCmd=="help" || tmpCmd == "hel"){
-                //alert(conArr[0]);
                 for(var m = 0; m < conArr.length; m=m+2){
                     conArr[m]=conArr[m].replace(/\s+/g, "");//修正符g表示全局匹配
-                    //alert(conArr[m]);
                     if(conArr[m]=="help"){
                         resultStr=conArr[m+1];
                         resultStr=resultStr.substr(0,resultStr.length-7);
-                        //alert(resultStr+"#");
                         break;
                     }
                 }
-                //resultStr="help you help you";
             }
             else if(tmpCmd=="login" || tmpCmd == "log"){
                 alert("login");
             }
             else if(tmpCmd == "tree" || tmpCmd == "tre"){
-                //alert("tree");
                 for(var m = 0; m < conArr.length; m=m+2){
                     conArr[m]=conArr[m].replace(/\s+/g, "");//修正符g表示全局匹配
-                    //alert(conArr[m]);
                     if(conArr[m]=="tree"){
                         resultStr=conArr[m+1];
                         resultStr=resultStr.substr(0,resultStr.length-7);
-                        //alert(resultStr+"#");
                         break;
                     }
                 }
@@ -149,7 +136,6 @@ document.onkeydown=function getKey(e){
                     }
                 }
             }
-            //alert(tmpCmd);
             if(resultStr!=""){
                 initString = initString.replace(/<SPAN.*$/gi,"");
                 initString = initString + "<br />"+resultStr;
@@ -162,7 +148,6 @@ document.onkeydown=function getKey(e){
             initString = initString + "<br />lujun# <SPAN id='blink'>_</SPAN>";
             document.getElementById('myContent').innerHTML = initString;
             blinkSpan();
-            //alert(tmpCmd.length);
             tmpCmd="";
             delFlag=tmpCmd.length;
 
@@ -170,13 +155,11 @@ document.onkeydown=function getKey(e){
         }
         else if(keyCode == 8){
             delFlag--;
-            //alert(tmpCmd.length+"#"+delFlag);
             if(delFlag>=0){ 
                 clearTimeout(timer2);
                 initString = initString.replace(/<SPAN.*$/gi,"");
                 initString=initString.substr(0,initString.length-1);
                 tmpCmd = initString.substr(initString.length-delFlag,delFlag);
-                //alert(tmpCmd);
                 delFlag=tmpCmd.length;
                 initString = initString + "<SPAN id='blink'>_</SPAN>";
                 document.getElementById('myContent').innerHTML = initString;
@@ -190,7 +173,6 @@ document.onkeydown=function getKey(e){
                 //添加到command窗口中
                 clearTimeout(timer2);
                 tmpCmd += keyChar;
-                //alert(initString.substr(initString.length-30));
                 initString = initString.replace(/<SPAN.*$/gi,"");
                 initString = initString +keyChar+"<SPAN id='blink'>_</SPAN>";
                 document.getElementById('myContent').innerHTML = initString;
@@ -213,7 +195,6 @@ function writeCmd(){
     
     var theChar = cmdStr.charAt(charIndexOne);
     var nextFourChars = cmdStr.substr(charIndexOne,4);//判断是否到换行，截取4个字符
-    // alert(charIndexOne);
     if(nextFourChars=='<BR>' || nextFourChars=='<br>'){
         theChar  = '<BR>';
         charIndexOne+=3;
@@ -229,7 +210,6 @@ function writeCmd(){
     }
             
     if(charIndexOne<=stringLengthOne){
-        //alert(charIndexOne);
         setTimeout('writeCmd()',writeSpeed);
     }else{
         showHD();
@@ -238,11 +218,13 @@ function writeCmd(){
         cmdStr=null;
     }
 }
-function show(url){//单条命令展示
+//单条命令展示
+function show(url){
     cmdStr=url;
     writeCmd();
 }
-function showHD(){//展示
+//展示
+function showHD(){
     initString = initString.replace(/<SPAN.*$/gi,"");
     for(var m = 0; m < conArr.length; m=m+2){
         conArr[m]=conArr[m].replace(/\s+/g, "");
@@ -257,7 +239,6 @@ function showHD(){//展示
             default:
                 break;
         }
-        //alert(tmpURL+"#"+conArr[m]);
         if(conArr[m]==tmpURL){
             resultStr=conArr[m+1];
             resultStr=resultStr.substr(0,resultStr.length);
